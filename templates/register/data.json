@@ -1,0 +1,14 @@
+{
+  "user": {
+    "id": 123,
+    "first_name": "Albert",
+    "last_name": "Dupont",
+    "phone_number": "+33123456789",
+    "email": "adupont@toto.io",
+    "country": "France",
+    "language": "French",
+    "company": "4Tech",
+    "displayed_name": "Albert Dupont",
+    "full_name": "Albert Dupont"
+  }
+}

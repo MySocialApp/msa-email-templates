@@ -1,0 +1,16 @@
+vars:
+  contact_email: contact@mysocialapp.io
+
+link:
+  playstore:
+  appstore:
+  header_features: https://mysocialapp.io/#features
+  header_support: https://mysocialapp.io/support/
+  header_contact: https://mysocialapp.io/#contact
+  contact:
+
+social:
+  facebook: https://www.facebook.com/mysocialapp.io/
+  linkedin: https://www.linkedin.com/company/18272971/
+
+prod_root_path: https://raw.githubusercontent.com/MySocialApp/msa-email-templates/master/
