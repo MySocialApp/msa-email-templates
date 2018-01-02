@@ -1,14 +1,14 @@
 {
   "user": {
-    "id": 123,
-    "first_name": "Albert",
-    "last_name": "Dupont",
-    "phone_number": "+33123456789",
-    "email": "adupont@toto.io",
-    "country": "France",
-    "language": "French",
-    "company": "4Tech",
-    "displayed_name": "Albert Dupont",
-    "full_name": "Albert Dupont"
+    "id": "{{user_id}}",
+    "first_name": "{{user_first_name}}",
+    "last_name": "{{user_last_name}}",
+    "phone_number": "{{user_phone_number}}",
+    "email": "{{user_email}}",
+    "country": "{{user_country}}",
+    "language": "{{user_language}}",
+    "company": "{{user_company}}",
+    "displayed_name": "{{user_displayed_name}}",
+    "full_name": "{{user_full_name}}"
   }
 }

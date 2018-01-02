@@ -45,10 +45,10 @@ func serve(bind int, devMode bool) {
 		if f.IsDir() && f.Name()[:1] != "." {
 			app.StaticWeb(fmt.Sprintf("/template/%s/images", f.Name()), fmt.Sprintf("./templates/%s/images", f.Name()))
 			app.Get(fmt.Sprintf("/template/%s", f.Name()), func(ctx iris.Context) {
-				getDevTemplate(ctx, f.Name())
+				getTemplate(ctx, f.Name(), devMode)
 			})
 			app.Post(fmt.Sprintf("/template/%s", f.Name()), func(ctx iris.Context) {
-				getTemplate(ctx, f.Name())
+				getTemplateFromData(ctx, f.Name(), devMode)
 			})
 			log15.Info(fmt.Sprintf("add directory %s", f.Name()))
 		}
@@ -80,7 +80,7 @@ func getConf() *Config {
 	return config
 }
 
-func getDevTemplate(ctx iris.Context, directory string) {
+func getTemplate(ctx iris.Context, directory string, devMode bool) {
 	var data map[string]interface{}
 	rawData, err := ioutil.ReadFile(fmt.Sprintf("./templates/%s/data.json", directory))
 	if err == nil {
@@ -98,11 +98,15 @@ func getDevTemplate(ctx iris.Context, directory string) {
 	ctx.Header("pragma", "no-cache")
 	ctx.Header("expires", "-1")
 	ctx.ViewData("conf", conf)
-	ctx.ViewData("rootPath", directory)
+	rootPath := conf.ProdRootPath
+	if devMode {
+		rootPath = directory
+	}
+	ctx.ViewData("rootPath", rootPath)
 	ctx.View(fmt.Sprintf("%s/index.html", directory))
 }
 
-func getTemplate(ctx iris.Context, directory string) {
+func getTemplateFromData(ctx iris.Context, directory string, devMode bool) {
 	var data interface{}
 	err := ctx.ReadJSON(&data)
 	if err != nil {
@@ -115,6 +119,10 @@ func getTemplate(ctx iris.Context, directory string) {
 	ctx.Header("expires", "-1")
 	ctx.ViewData("conf", conf)
 	ctx.ViewData("data", data)
-	ctx.ViewData("rootPath", conf.ProdRootPath)
+	rootPath := conf.ProdRootPath
+	if devMode {
+		rootPath = directory
+	}
+	ctx.ViewData("rootPath", rootPath)
 	ctx.View(fmt.Sprintf("%s/index.html", directory))
 }
