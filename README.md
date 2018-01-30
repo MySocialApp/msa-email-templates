@@ -1,6 +1,7 @@
 # msa-email-templates
-public email templates used pour MysocialApp
 
-#web server
+You can find here public email templates used at [MySocialApp](https://mysocialapp.io) (iOS and Android social app builder - SaaS)
+
+# web server
 
 web server is used for a developpement purpose and generate template output
